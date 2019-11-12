@@ -1,0 +1,12 @@
+[submodule "join-backend"]
+	path = join-backend
+	url = https://github.com/lascuolaopensource/join-backend.git
+[submodule "join-frontend"]
+	path = join-frontend
+	url = https://github.com/lascuolaopensource/join-frontend.git
+[submodule "join-admin-frontend"]
+	path = join-admin-frontend
+	url = https://github.com/lascuolaopensource/join-admin-frontend.git
+[submodule "join-ui-shared"]
+	path = join-ui-shared
+	url = https://github.com/lascuolaopensource/join-ui-shared.git
