@@ -6,7 +6,7 @@ Gestionale per nuove istituzioni
 
 Clone repository:
 
-    git pull https://github.com/lascuolaopensource/join.git
+    git clone https://github.com/lascuolaopensource/join.git
   
 Clone submodules:
 
