@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  database:
+    image: postgres:latest
+    ports: 
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=gestionale
+      - POSTGRES_USER=stoca
+      - POSTGRES_PASSWORD=12345678
+
+  frontend:
+    build: ./join-frontend
+    ports:
+      - "8080:80"
+      - "4443:443"
+    depends_on:
+      - backend
+
+  admin-frontend:
+    build: ./join-admin-frontend
+    ports:
+      - "8081:80"
+      - "4444:443"
+    depends_on:
+      - backend
+  
+  backend:
+    build: ./join-backend
+    command: bash -c "sbt stage && sbt seedDataProd && target/universal/stage/bin/sos -Dconfig.resource=env/prod.conf -Dhttp.port=9000 -Dlogger.resource=logback.xml -Dplay.evolutions.db.default.autoApply=true -Dplay.http.secret.key='QCY?tAnfk?aZ?iwrNwnxIlR6CTf:G3gf:90Latabg@5241ABR5W:1uDFN];Ik@n'"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    depends_on:
+      - database
+    
