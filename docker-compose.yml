@@ -27,9 +27,29 @@ services:
       - backend
   
   backend:
-    build: ./join-backend
+    build:
+      context: ./join-backend
+      args:
+        - APPLICATION_SECRET=${APPLICATION_SECRET}
+        - JDBC_DATABASE_URL=${JDBC_DATABASE_URL}
+        - JDBC_DATABASE_USER=${JDBC_DATABASE_USER}
+        - JDBC_DATABASE_PASSWORD=${JDBC_DATABASE_PASSWORD}
+        - ADMIN_URL=${ADMIN_URL}
+        - USER_URL=${USER_URL}
+        - USER_WELCOME_URL=${USER_WELCOME_URL}
+        - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+        - AWS_SECRET_KEY=${AWS_SECRET_KEY}
+        - DUMMY_USER_EMAIL=${DUMMY_USER_EMAIL}
+        - DUMMY_USER_PWD=${DUMMY_USER_PWD}
+        - BRAINTREE_MERCHANT_ID=${BRAINTREE_MERCHANT_ID}
+        - BRAINTREE_PUBLIC_KEY=${BRAINTREE_PUBLIC_KEY}
+        - BRAINTREE_PRIVATE_KEY=${BRAINTREE_PRIVATE_KEY}
+        - BRAINTREE_ENVIRONMENT=${BRAINTREE_ENVIRONMENT}
+        - MAILER_HOST=${MAILER_HOST}
+        - MAILER_USER=${MAILER_USER}
+        - MAILER_PASS=${MAILER_PASS}
     command: bash -c "sbt stage && sbt seedDataProd && target/universal/stage/bin/sos -Dconfig.resource=env/prod.conf -Dhttp.port=9000 -Dlogger.resource=logback.xml -Dplay.evolutions.db.default.autoApply=true -Dplay.http.secret.key='QCY?tAnfk?aZ?iwrNwnxIlR6CTf:G3gf:90Latabg@5241ABR5W:1uDFN];Ik@n'"
-    ports:
+    ports: 
       - "9000:9000"
       - "9001:9001"
     depends_on:
