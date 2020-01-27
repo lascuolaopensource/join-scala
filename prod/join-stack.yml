@@ -1,0 +1,97 @@
+version: '3'
+
+services:
+  database:
+    image: postgres
+    ports: 
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=gestionale
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=12345678
+
+  frontend:
+    image: <join-backend-pushed-image-tag>
+    networks:
+      - default
+      - traefik-public
+    depends_on:
+      - backend
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.joinpublicfrontend.rule=Host(`join.example.com`)"
+        - "traefik.http.routers.joinpublicfrontend.entrypoints=websecure"
+        - "traefik.http.routers.joinpublicfrontend.tls.certresolver=letsencryptresolver"
+        - "traefik.http.services.joinpublicfrontend.loadbalancer.server.port=80"
+
+  admin-frontend:
+    image: <join-admin-frontend-pushed-image-tag>
+    networks:
+      - default
+      - traefik-public
+    depends_on:
+      - backend
+    deploy:
+      mode: replicated                                                                                                                                         
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.joinadminfrontend.rule=Host(`admin.example.com`)"
+        - "traefik.http.routers.joinadminfrontend.entrypoints=websecure"
+        - "traefik.http.routers.joinadminfrontend.tls.certresolver=letsencryptresolver"
+        - "traefik.http.services.joinadminfrontend.loadbalancer.server.port=80"
+  
+  backend:
+    image: <join-backend-pushed-image-tag>
+    command: bash -c "sbt stage && sbt seedDataProd && target/universal/stage/bin/sos -Dconfig.resource=env/prod.conf -Dhttp.port=9000 -Dlogger.resource=logback.xml -Dplay.evolutions.db.default.autoApply=true -Dplay.http.secret.key='QCY?tAnfk?aZ?iwrNwnxIlR6CTf:G3gf:90Latabg@5241ABR5W:1uDFN];Ik@n'"
+    networks:
+      - default
+      - traefik-public
+    depends_on:
+      - database
+    deploy:
+      mode: replicated                                                                                                                                         
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.joinbackend.rule=Host(`login.example.com`)"
+        - "traefik.http.routers.joinbackend.entrypoints=websecure"
+        - "traefik.http.routers.joinbackend.tls.certresolver=letsencryptresolver"
+        - "traefik.http.services.joinbackend.loadbalancer.server.port=9000"
+       
+  pgadmin:
+    image: dpage/pgadmin4
+    networks:
+      - default
+      - traefik-public
+    volumes:
+      - pgadmin:/root/.pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=dummy@example.com
+      - PGADMIN_DEFAULT_PASSWORD=12345678
+    deploy:
+      mode: replicated                                                                                                                                         
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.joinpgadmin.rule=Host(`pgadmin.example.com`)"
+        - "traefik.http.routers.joinpgadmin.entrypoints=websecure"
+        - "traefik.http.routers.joinpgadmin.tls.certresolver=letsencryptresolver"
+        - "traefik.http.services.joinpgadmin.loadbalancer.server.port=80"
+
+networks:
+   traefik-public:
+     external: true
+volumes:
+   pgadmin:

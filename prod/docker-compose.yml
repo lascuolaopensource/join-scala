@@ -1,0 +1,68 @@
+version: '3'
+
+services:
+  database:
+    image: postgres
+    ports: 
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=gestionale
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=12345678
+
+  frontend:
+    build: ../join-frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+
+  admin-frontend:
+    build: ../join-admin-frontend
+    ports:
+      - "8081:80"
+    depends_on:
+      - backend
+  
+  backend:
+    build:
+      context: ../join-backend
+      args:
+        - APPLICATION_SECRET=${APPLICATION_SECRET}
+        - JDBC_DATABASE_URL=${JDBC_DATABASE_URL}
+        - JDBC_DATABASE_USER=${JDBC_DATABASE_USER}
+        - JDBC_DATABASE_PASSWORD=${JDBC_DATABASE_PASSWORD}
+        - ADMIN_URL=${ADMIN_URL}
+        - USER_URL=${USER_URL}
+        - USER_WELCOME_URL=${USER_WELCOME_URL}
+        - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+        - AWS_SECRET_KEY=${AWS_SECRET_KEY}
+        - DUMMY_USER_EMAIL=${DUMMY_USER_EMAIL}
+        - DUMMY_USER_PWD=${DUMMY_USER_PWD}
+        - BRAINTREE_MERCHANT_ID=${BRAINTREE_MERCHANT_ID}
+        - BRAINTREE_PUBLIC_KEY=${BRAINTREE_PUBLIC_KEY}
+        - BRAINTREE_PRIVATE_KEY=${BRAINTREE_PRIVATE_KEY}
+        - BRAINTREE_ENVIRONMENT=${BRAINTREE_ENVIRONMENT}
+        - MAILER_HOST=${MAILER_HOST}
+        - MAILER_USER=${MAILER_USER}
+        - MAILER_PASS=${MAILER_PASS}
+    command: bash -c "sbt stage && sbt seedDataProd && target/universal/stage/bin/sos -Dconfig.resource=env/prod.conf -Dhttp.port=9000 -Dlogger.resource=logback.xml -Dplay.evolutions.db.default.autoApply=true -Dplay.http.secret.key='QCY?tAnfk?aZ?iwrNwnxIlR6CTf:G3gf:90Latabg@5241ABR5W:1uDFN];Ik@n'"
+    ports: 
+      - "9000:9000"
+      - "9001:9001"
+    depends_on:
+      - database
+    
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - "8082:80"
+    volumes:
+      - pgadmin:/root/.pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=dummy@example.com
+      - PGADMIN_DEFAULT_PASSWORD=12345678
+
+volumes:
+   pgadmin:
+
