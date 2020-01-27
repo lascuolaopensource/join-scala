@@ -1,0 +1,12 @@
+[submodule "join-frontend"]
+	path = join-frontend
+	url = https://github.com/lascuolaopensource/join-frontend.git
+	branch = master
+[submodule "join-admin-frontend"]
+	path = join-admin-frontend
+	url = https://github.com/lascuolaopensource/join-admin-frontend.git
+	branch = master
+[submodule "join-backend"]
+	path = join-backend
+	url = https://github.com/lascuolaopensource/join-backend.git
+	branch = master
