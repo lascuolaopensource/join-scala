@@ -1,8 +1,12 @@
 # join
-Gestionale per nuove istituzioni
+### Gestionale per nuove istituzioni
 
+Piattaforma open source — ecologica, radicale e inclusiva — per Centri di Produzione Culturale Indipendente. 
+Mantained by [La Scuola Open Source](lascuolaopensource.xyz)
 
-## Install
+## How to use
+
+#### Clone
 
 Clone repository:
 
@@ -12,8 +16,7 @@ Clone submodules:
 
         git submodule update --init --recursive
 
-Check out READMEs in each folder to install both frontend and backend.
-Or use docker-compose instead.
+### Choose an environment
 
-        docker-compose build
-        docker-compose up
+#### [Development](https://github.com/lascuolaopensource/join/tree/master/dev)
+#### [Production](https://github.com/lascuolaopensource/join/tree/master/prod)
