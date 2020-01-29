@@ -28,7 +28,7 @@ Join consists in:
 In addiction you have an [npm package](https://github.com/lascuolaopensource/join-ui-shared.git) for all shared ui styles between frontends.
 Everything encapsuled via [Docker](docker.com) containers and ready to be deployed on a [Swarm](https://docs.docker.com/engine/swarm/), reverse proxying with [Traefik](https://containo.us/traefik/).
 
-#### Clone
+### Clone
 
 In order to use Join you have to clone the repo and every submodule first.
 
