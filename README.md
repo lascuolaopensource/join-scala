@@ -22,8 +22,8 @@ The challenge of Join is to offer a product/platform to:
 Join consists in:
 
 - [Backend](https://github.com/lascuolaopensource/join-backend/tree/master). (Scala, Play Framework)
-- [Admin](https://github.com/lascuolaopensource/join-frontend/tree/master) and [Public].(https://github.com/lascuolaopensource/join-frontend/tree/master) frontends (Typescript, Angular, SASS)
-- [Database].(https://hub.docker.com/_/postgres) (PostgreSQL)
+- [Admin](https://github.com/lascuolaopensource/join-frontend/tree/master) and [Public](https://github.com/lascuolaopensource/join-frontend/tree/master) frontends. (Typescript, Angular, SASS)
+- [Database](https://hub.docker.com/_/postgres). (PostgreSQL)
 
 In addiction you have an [npm package](https://github.com/lascuolaopensource/join-ui-shared.git) for all shared ui styles between frontends.
 Everything encapsuled via [Docker](docker.com) containers and ready to be deployed on a [Swarm](https://docs.docker.com/engine/swarm/), reverse proxying with [Traefik](https://containo.us/traefik/).
