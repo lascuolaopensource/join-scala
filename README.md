@@ -43,12 +43,12 @@ An exemplary case is given by the inability to control the continuous flow of me
 
 In this context, addressing individuals and collectives that start from our own needs, we have built a useful tool for organization and communication in the field of cultural production, aware that the architecture of the platform itself will encourage collaboration, inclusion and horizontality at the expense of competition, exclusion and hierarchies of gender, race, class and training.
 
-### 🌈 <em>Joining</em> Join
+### 🌈 Joining Join
 
 Join is not just an online portal, but first of all a support tool for an ecosystem made up of social spaces, cultural centers, collectives and individuals.
 Joining Join means exploring the unpredictable possibilities that interconnection between humans can generate.
 
-If you want to learn more about Join, read our Wiki (link).
+If you want to learn more about Join, read our Wiki (link soon).
 
 ## 🧰 How to use it?
 
