@@ -1,7 +1,6 @@
 # ✨JOIN✨
 
-An open software for new Institutions, to empower <em>more-than-human</em> 
-assemblages of commons (ideas, skills, tools) and people.
+An <em>open source</em> platform  — <em>ecologic, radical and inclusive</em> — for new Cultural Institutions, co-created to empower <em>more-than-human</em> assemblages of commons (ideas, skills, tools) and people.
 
 Mantained by [La Scuola Open Source](lascuolaopensource.xyz). 
 
@@ -9,12 +8,12 @@ Mantained by [La Scuola Open Source](lascuolaopensource.xyz).
 
 Join focuses on the process of production and reproduction of value (economic, cultural, social and symbolic) in self-organizing communities. 
 
-The challenge of Join is to offer a product/platform to:
+The challenge is to offer people a product/platform to:
 - Shorten the distances between communities that pursue the same values and facilitate the workability/feasibility of projects.
-- Strengthen the cultural production activity of the new institutions.
-- Give more control over their data to the participants.
+- Strengthen the cultural production activity of indipendent organizations.
+- Give participants more control over their data. 
 - Provide an open source tool customized by all users according to the different communities.
-- Provide a tool for horizontal, and not vertical, relationships between the communities that use it.
+- Provide a tool for horizontal relationships between the communities members that use it.
 
 
 ## 🧰 How to use it?
