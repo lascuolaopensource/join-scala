@@ -48,7 +48,7 @@ In this context, addressing individuals and collectives that start from our own 
 Join is not just an online portal, but first of all a support tool for an ecosystem made up of social spaces, cultural centers, collectives and individuals.
 Joining Join means exploring the unpredictable possibilities that interconnection between humans can generate.
 
-If you want to learn more about Join, read our Wiki (add link).
+If you want to learn more about Join, read our Wiki (link).
 
 ## 🧰 How to use it?
 
@@ -78,4 +78,4 @@ Clone submodules:
 Now you have to choose your environment:
 
 - #### 💻 [Development](https://github.com/lascuolaopensource/join/tree/master/dev) - Use this one to customize look or to develop new features locally.
-- #### 💪🏾 [Production](https://github.com/lascuolaopensource/join/tree/master/prod) - Use this to deploy Join online and serve it to your community.
+- #### 💪🏾 [Production](https://github.com/lascuolaopensource/join/tree/master/prod) - Use this to deploy Join online and use it for your community.
