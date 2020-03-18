@@ -1,15 +1,27 @@
 # Development environment example
 
-We're using [Docker](docker.com), docker-compose and [Swarm](https://docs.docker.com/engine/swarm/) to develop and deploy Join in an easy and fast way.
-In this document you'll find instruction for deploying Join in a development environment using these tools.
-
+We're using [Docker](docker.com) and docker-compose to develop and deploy Join in an easy and fast way.
+In this document you'll find instructions for deploying Join in a development environment using these tools.
 You probably might want to use this environment to edit frontend looks before [deploying](github.com/lascuolaopensource/join/prod/README.md).
 
 ## How to use
 
-#### Set environment
-
 Make sure you've cloned the repository and `cd` into `join/dev`.
+
+#### Install required software
+
+In order to set up your environment correctly you should have these softwares installed on your machine:
+
+- docker
+- docker-compose
+- node 8.12
+
+You can use shell scripts in `join/dev` if you are on Debian/Ubuntu.
+
+        ./install_docker.sh
+        ./install_node.sh
+
+#### Set environment
 
 Make a copy `dev.env.example` named `.env`.
 
