@@ -52,7 +52,7 @@ services:
         - MAILER_HOST=${MAILER_HOST}
         - MAILER_USER=${MAILER_USER}
         - MAILER_PASS=${MAILER_PASS}
-    command: bash -c "sbt run"
+    command: bash -c "sbt stage && sbt seedDataProd && target/universal/stage/bin/sos -Dconfig.resource=env/prod.conf -Dhttp.port=9000 -Dlogger.resource=logback.xml -Dplay.evolutions.db.default.autoApply=true -Dplay.http.secret.key='QCY?tAnfk?aZ?iwrNwnxIlR6CTf:G3gf:90Latabg@5241ABR5W:1uDFN];Ik@n'"
     volumes:
       - "../join-backend:/join-backend"
     ports: 
