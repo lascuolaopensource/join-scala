@@ -1,17 +1,21 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
-# Use a package of configuration called an orb.
+
 defaults: &defaults
   working_directory: ~/repo
   docker:
     - image: circleci/node:latest
-workflows:
-  # Name the workflow "welcome"
-  welcome:
-    # Run the welcome/run job in its own container
-    jobs:
+    
+    
+jobs:
+
+  deploy:
+    <<: *defaults 
+    steps:
       deploy:
-        <<: *defaults 
-        steps:
-          - checkout
+        - checkout
         
+workflows:
+  version: 2
+  test-deploy:
+    jobs:
+      - deploy
