@@ -1,21 +1,19 @@
-version: 2.1
-
-defaults: &defaults
-  working_directory: ~/repo
-  docker:
-    - image: circleci/node:latest
-    
-    
+version: 2
 jobs:
-
-  deploy:
-    <<: *defaults 
+  build:
+    docker:
+      - image: circleci/node:latest
     steps:
-      deploy:
-        - checkout
-        
+      - checkout
+  test:
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+      
 workflows:
-  version: 2.1
-  deploy:
+  version: 2
+  build_and_test:
     jobs:
-      - deploy
+      - build
+      - test
