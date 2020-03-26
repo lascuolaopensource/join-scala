@@ -16,8 +16,7 @@ jobs:
     executor: docker/docker
       
     steps:
-      - docker/check
-      - docker/build
+      - docker/install-docker-tools
       
 orbs:
   node: circleci/node@1.1
