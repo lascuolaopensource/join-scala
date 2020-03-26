@@ -5,14 +5,14 @@ jobs:
       tag: '10.4'
     steps:
       - checkout
-      - node/with-cache:
+      - node:
           steps:     
           - run:
               name: Update git submodules
               command: 'git submodule update --init --recursive'
           - run:
               name: Docker build
-              command: docker build
+              command: docker build .
 
 orbs:
   node: circleci/node@1.1
