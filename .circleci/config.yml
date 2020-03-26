@@ -9,7 +9,7 @@ jobs:
           steps:     
           - run:
               name: Update git submodules
-              command: 'git submodule update --init --recursive
+              command: 'git submodule update --init --recursive'
 orbs:
   node: circleci/node@1.1
 version: 2.1
