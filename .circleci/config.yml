@@ -24,3 +24,9 @@ orbs:
   docker: circleci/docker@1.0.0
 
 version: 2.1
+
+workflows:
+  commit:
+    jobs:
+      - checkout-update
+      - docker-build
