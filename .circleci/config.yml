@@ -1,8 +1,9 @@
 jobs:
-  build:
+  checkout-update:
     executor:
       name: node/default
       tag: '10.4'
+      
     steps:
       - checkout
       - node/with-cache:
@@ -10,11 +11,16 @@ jobs:
           - run:
               name: Update git submodules
               command: 'git submodule update --init --recursive'
-          - run:
-              name: Docker build
-              working-directory: './prod/'
-              command: 'docker-compose build'
-
+    
+  docker-build:
+    executor: docker/docker
+      
+    steps:
+      - docker/check
+      - docker/build
+      
 orbs:
   node: circleci/node@1.1
+  docker: circleci/docker@1.0.0
+
 version: 2.1
