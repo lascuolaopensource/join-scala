@@ -8,21 +8,7 @@ jobs:
     - run:
         name: Update git submodules
         command: 'git submodule update --init --recursive'
-  
-  test:
-    executor:
-      name: node/default
-      tag: '10.4'
-    steps:
-      - checkout
-      
-workflows:
-  version: 2.1
-  build_and_test:
-    jobs:
-      - build
-      - test    
-
+ 
 orbs:
   node: circleci/node@1.1
 version: 2.1
