@@ -6,7 +6,7 @@ jobs:
       
     steps:
       - checkout
-      - node/with-cache:
+      - node:
           steps:     
           - run:
               name: Update git submodules
