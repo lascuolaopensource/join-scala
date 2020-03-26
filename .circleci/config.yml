@@ -5,6 +5,9 @@ jobs:
       - image: circleci/node:latest
     steps:
       - checkout
+      - run:
+          name: Update git submodules
+          command: 'git submodule update --init --recursive'
   test:
     docker:
       - image: circleci/node:latest
