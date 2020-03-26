@@ -6,8 +6,10 @@ jobs:
     steps:
       - checkout
       - node/with-cache:
-          steps:
-            - run: npm install
+          steps:     
+          - run:
+              name: Update git submodules
+              command: 'git submodule update --init --recursive
 orbs:
   node: circleci/node@1.1
 version: 2.1
