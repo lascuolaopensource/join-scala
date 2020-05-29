@@ -1,0 +1,51 @@
+##  Frontend
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: join-frontend-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+  - hosts:
+    - join.lascuolaopensource.xyz
+    secretName: join-frontend-tls
+  - hosts:
+    - login.lascuolaopensource.xyz
+    secretName: join-backend-tls
+  - hosts:
+    - admin.lascuolaopensource.xyz
+    secretName: join-admin-frontend-tls
+  - hosts:
+    - pgadmin.lascuolaopensource.xyz
+    secretName: pgadmin-tls
+  rules:
+  - host: join.lascuolaopensource.xyz
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: join-frontend-service
+          servicePort: 80
+  - host: admin.lascuolaopensource.xyz
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: join-admin-frontend-service
+          servicePort: 80
+  - host: login.lascuolaopensource.xyz
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: join-backend-service
+          servicePort: 9000
+  - host: pgadmin.lascuolaopensource.xyz
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: join-backend-service
+          servicePort: 80

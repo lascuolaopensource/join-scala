@@ -1,0 +1,45 @@
+##  Frontend
+apiVersion: v1
+kind: Service
+metadata:
+  name: join-frontend-service
+spec:
+  selector:
+    app: join-frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+
+---
+##  Admin-Frontend
+apiVersion: v1
+kind: Service
+metadata:
+  name: join-admin-frontend-service
+spec:
+  selector:
+    app: join-admin-frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+
+---
+##  Backend
+apiVersion: v1
+kind: Service
+metadata:
+  name: join-backend-service
+spec:
+  selector:
+    app: join-backend
+  ports:
+    - name: backend
+      protocol: TCP
+      port: 9000
+      targetPort: 9000
+    - name: pgadmin
+      protocol: TCP
+      port: 80
+      targetPort: 80

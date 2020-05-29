@@ -1,0 +1,90 @@
+##  Frontend
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: join-frontend
+spec:
+  selector:
+    matchLabels:
+      app: join-frontend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: join-frontend
+    spec:
+      containers:
+      - name: join-frontend
+        image: registry.gitlab.com/lascuolaopensource/join-frontend:latest
+        ports:
+        - containerPort: 80
+---
+##  Admin-Frontend
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: join-admin-frontend
+spec:
+  selector:
+    matchLabels:
+      app: join-admin-frontend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: join-admin-frontend
+    spec:
+      containers:
+      - name: join-admin-frontend
+        image: registry.gitlab.com/lascuolaopensource/join-admin-frontend:latest
+        ports:
+        - containerPort: 80
+---
+##  Backend
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: join-backend
+spec:
+  selector:
+    matchLabels:
+      app: join-backend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: join-backend
+    spec:
+      hostname: database
+      containers:
+      - name: join-backend
+        image: registry.gitlab.com/lascuolaopensource/join-backend:latest
+        ports:
+        - containerPort: 9000
+      - name: database
+        image: postgres
+        ports:
+        - containerPort: 5432
+        env:
+            - name: POSTGRES_DB
+              value: gestionale
+            - name: POSTGRES_USER
+              value: admin
+            - name: POSTGRES_PASSWORD
+              value: "12345678"
+      - name: pgadmin
+        image: dpage/pgadmin4
+        ports:
+           - containerPort: 80
+        env:
+          - name: PGADMIN_DEFAULT_EMAIL
+            value: dummy@example.com
+          - name: PGADMIN_DEFAULT_PASSWORD
+            value: "12345678"
+
+
+
+
+
+
+
